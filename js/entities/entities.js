@@ -28,13 +28,23 @@ game.PlayerEntity = me.Entity.extend({
             //me.timer.tick makes the movement look smooth
             this.body.vel.x += this.body.accel.x * me.timer.tick;
             this.flipX(true);
+        
+         }else if (me.input.isKeyPressed("left")) {
+        this.renderable.flipX(false);
+          this.body.vel.x -= this.body.accel.x * me.timer.tick;
+        
         } else {
             this.body.vel.x = 0;
         }
+         
+         if (me.input.isKeyPressed("jump")){
+            this.body.vel.y -= this.body.accel.y * me.timer.tick; 
+         }
+   
+          
         
         if(me.input.isKeyPressed("attack")){
-            con
-            if(!this,renderable,isCurrentAnimation("attack")){
+              if(!this,renderable,isCurrentAnimation("attack")){
                 console.log("attack");
                 //Sets the current animation to attack and once that is over
                 //goes back to the idle animation...
@@ -61,6 +71,7 @@ game.PlayerEntity = me.Entity.extend({
         this._super(me.Entity, "update", [delta]);
         return true;
     }
+    
 });
 
 game.PlayerBaseEntity = me.Entity.extend({
